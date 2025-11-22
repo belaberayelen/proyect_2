@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Belaber Ayelen Trinidad</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .contenedor {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .encabezado {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .foto-perfil {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 5px solid white;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #999;
+            overflow: hidden;
+            object-fit: cover;
+        }
+        
+        .foto-perfil img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .nombre {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .ubicacion {
+            font-size: 16px;
+            opacity: 0.95;
+            margin-bottom: 15px;
+        }
+        
+        .botones-contacto {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-whatsapp {
+            background: white;
+            color: #25d366;
+            border: 2px solid #25d366;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #25d366;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-pdf {
+            background: white;
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+        }
+        
+        .btn-pdf:hover {
+            background: #e74c3c;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .contenido {
+            padding: 40px;
+        }
+        
+        .seccion {
+            margin-bottom: 35px;
+        }
+        
+        .titulo-seccion {
+            font-size: 22px;
+            font-weight: bold;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .habilidad {
+            display: inline-block;
+            background: #f0f0f0;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 14px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .habilidad-principal {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-left: 4px solid white;
+        }
+        
+        .item-lista {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            border-left: 4px solid #667eea;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        
+        .item-titulo {
+            font-weight: bold;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .item-subtitulo {
+            color: #667eea;
+            font-size: 14px;
+            margin-top: 3px;
+        }
+        
+        .item-descripcion {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 600px) {
+            .nombre {
+                font-size: 24px;
+            }
+            
+            .contenido {
+                padding: 20px;
+            }
+            
+            .botones-contacto {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .botones-contacto {
+                display: none;
+            }
+            
+            .contenedor {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor" id="cv-content">
+        <div class="encabezado">
+            <div class="foto-perfil">
+                <img id="foto" src="https://via.placeholder.com/150?text=Tu+Foto" alt="Foto de perfil">
+            </div>
+            <h1 class="nombre">Belaber Ayelen Trinidad</h1>
+            <p class="ubicacion">📍 Posadas, Misiones - Argentina</p>
+            
+            <div class="botones-contacto" id="botones-print">
+                <a href="https://wa.me/5493764XXXXXX?text=Hola%20Ayelen,%20vi%20tu%20CV%20y%20me%20gustaría%20contactarte" target="_blank" class="btn btn-whatsapp">
+                    <span>💬</span> Contactar por WhatsApp
+                </a>
+                <button class="btn btn-pdf" onclick="descargarPDF()">
+                    <span>📄</span> Descargar CV en PDF
+                </button>
+            </div>
+        </div>
+        
+        <div class="contenido">
+            <!-- PERFIL PROFESIONAL -->
+            <div class="seccion">
+                <h2 class="titulo-seccion">Perfil Profesional</h2>
+                <p style="color: #666; line-height: 1.8; font-size: 15px;">
+                    Profesional versátil con destacada capacidad para innovar soluciones, actitud proactiva y compromiso absoluto con la excelencia. Dinámica, resolutiva y con gran disposición para enfrentar nuevos desafíos. Excelente comunicadora con facilidad para adaptarse a diversos contextos y equipos de trabajo. Orientada a resultados con iniciativa natural para identificar oportunidades de mejora.
+                </p>
+            </div>
+            
+            <!-- HABILIDADES PRINCIPALES -->
+            <div class="seccion">
+                <h2 class="titulo-seccion">Habilidades Clave</h2>
+                <div>
+                    <span class="habilidad habilidad-principal">Creatividad e Innovación</span>
+                    <span class="habilidad habilidad-principal">Responsabilidad</span>
+                    <span class="habilidad habilidad-principal">Efectividad</span>
+                    <span class="habilidad habilidad-principal">Coraje</span>
+                    <span class="habilidad habilidad-principal">Comunicación</span>
+                    <span class="habilidad habilidad-principal">Adaptabilidad</span>
+                    <span class="habilidad">Resolución de problemas</span>
+                    <span class="habilidad">Pensamiento estratégico</span>
+                    <span class="habilidad">Liderazgo</span>
+                    <span class="habilidad">Trabajo en equipo</span>
+                    <span class="habilidad">Gestión de proyectos</span>
+                    <span class="habilidad">Orientación al cliente</span>
+                    <span class="habilidad">Análisis y síntesis</span>
+                    <span class="habilidad">Autonomía profesional</span>
+                </div>
+            </div>
+            
+            <!-- EXPERIENCIA -->
+            <div class="seccion">
+                <h2 class="titulo-seccion">Experiencia Laboral</h2>
+                <div class="item-lista">
+                    <div class="item-titulo">Posición a Definir</div>
+                    <div class="item-subtitulo">Empresa / Organización</div>
+                    <div class="item-descripcion">Periodo: A definir | Ubicación: Posadas, Misiones</div>
+                </div>
+            </div>
+            
+            <!-- FORMACIÓN -->
+            <div class="seccion">
+                <h2 class="titulo-seccion">Formación Académica</h2>
+                <div class="item-lista">
+                    <div class="item-titulo">Estudios / Certificaciones</div>
+                    <div class="item-subtitulo">Institución Educativa</div>
+                    <div class="item-descripcion">A definir según tu formación profesional</div>
+                </div>
+            </div>
+            
+            <!-- COMPETENCIAS TÉCNICAS -->
+            <div class="seccion">
+                <h2 class="titulo-seccion">Competencias Técnicas</h2>
+                <div>
+                    <span class="habilidad">Gestión de procesos</span>
+                    <span class="habilidad">Planificación estratégica</span>
+                    <span class="habilidad">Análisis de datos</span>
+                    <span class="habilidad">Comunicación escrita</span>
+                    <span class="habilidad">Comunicación oral</span>
+                    <span class="habilidad">Herramientas Office</span>
+                    <span class="habilidad">Organización</span>
+                    <span class="habilidad">Toma de decisiones</span>
+                </div>
+            </div>
+            
+            <!-- IDIOMAS -->
+            <div class="seccion">
+                <h2 class="titulo-seccion">Idiomas</h2>
+                <div class="item-lista">
+                    <div class="item-titulo">Español</div>
+                    <div class="item-descripcion">Nativo</div>
+                </div>
+                <div class="item-lista">
+                    <div class="item-titulo">Inglés</div>
+                    <div class="item-descripcion">A definir nivel</div>
+                </div>
+            </div>
+            
+            <!-- INTERESES -->
+            <div class="seccion">
+                <h2 class="titulo-seccion">Intereses Profesionales</h2>
+                <p style="color: #666; line-height: 1.8; font-size: 15px;">
+                    Búsqueda continua de crecimiento profesional, aprendizaje permanente, innovación organizacional, emprendimiento, gestión de cambios, desarrollo de equipos y generación de valor en contextos dinámicos y desafiantes.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function descargarPDF() {
+            const elemento = document.getElementById('cv-content');
+            const opciones = {
+                margin: 10,
+                filename: 'CV_Belaber_Ayelen_Trinidad.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+            };
+            
+            html2pdf().set(opciones).from(elemento).save();
+        }
+        
+        // Permitir que el usuario suba su propia foto
+        document.addEventListener('DOMContentLoaded', function() {
+            const fotoElement = document.getElementById('foto');
+            fotoElement.addEventListener('click', function() {
+                alert('Para cambiar la foto:\n1. Reemplaza la URL de la imagen en el código\n2. O abre la consola del navegador (F12) y ejecuta:\n\nconst url = prompt("Ingresa la URL de tu foto:");\ndocument.getElementById("foto").src = url;');
+            });
+        });
+    </script>
+</body>
+</html>
